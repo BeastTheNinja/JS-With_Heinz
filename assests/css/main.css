@@ -1,0 +1,63 @@
+    @import url(popup.css);
+    /* #region GLOBAL STYLES */
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        /* #endregion */
+        /* #region DROP DOWN MENU */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropbtn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            min-width: 100px;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* #endregion */
+        /* #region LOGIN REGISTER */
+        .auth-container {
+            margin: 20px;
+        }
+        /* #endregion */

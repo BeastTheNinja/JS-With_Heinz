@@ -1,0 +1,63 @@
+/* Skjult som standard */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Indhold */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 300px;
+    box-shadow: 0 4px 8px #00000033;
+    
+    /* Startposition udenfor skærmen */
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+/* Når modal er aktiv */
+.modal.show .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Slide-out animation */
+.modal.hide .modal-content {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: block;
+    height: 16px; /* Sørger for, at layoutet ikke hopper */
+    margin-bottom: 5px;
+}
+
+/* Gør modal skjult, men synlig i baggrunden, når siden loader */
+.modal {
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Når modal åbnes, bliver den synlig */
+.modal.show {
+    opacity: 1;
+}
