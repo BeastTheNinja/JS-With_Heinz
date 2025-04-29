@@ -61,3 +61,11 @@
         margin: 20px;
     }
     /* #endregion */
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #3498db;
+        padding: 0px;
+        margin: 0px;
+    }
