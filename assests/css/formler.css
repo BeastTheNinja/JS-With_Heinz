@@ -1,5 +1,9 @@
 @import url(popup.css);
 /* #region GLOBAL STYLES */
+*{
+    margin: 0;
+    padding: 0;
+}
    body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -69,3 +73,15 @@
         padding: 0px;
         margin: 0px;
     }
+    .error-message {
+        color: red;
+        font-size: 0.9em;
+    }
+    
+    input:invalid {
+        border: 2px solid red;
+    }
+    input:valid {
+        border: 2px solid green;
+    }
+    

@@ -6,68 +6,107 @@ document.getElementById('zipcode').addEventListener('input', validateZipcode);
 document.getElementById('email').addEventListener('input', validateEmail);
 
 function validateFirstName() {
-    const firstName = document.getElementById('firstname').value;
-    if (firstName.length < 2) {
-        // alert('Fornavn skal være mindst 2 karakterer');
+    const input = document.getElementById('firstname');
+    const error = document.getElementById('firstnameError');
+    if (input.value.trim().length < 2) {
+        error.textContent = "Fornavn skal være mindst 2 tegn.";
+        input.style.border = "2px solid red";
+        return false;
+    } else {
+        error.textContent = "";
+        input.style.border = "2px solid green";
+        return true;
     }
 }
 
 function validateLastName() {
-    const lastName = document.getElementById('lastname').value;
-    if (lastName.length < 2) {
-        // alert('Efternavn skal være mindst 2 karakterer');
+    const input = document.getElementById('lastname');
+    const error = document.getElementById('lastnameError');
+    if (input.value.trim().length < 2) {
+        error.textContent = "Efternavn skal være mindst 2 tegn.";
+        input.style.border = "2px solid red";
+        return false;
+    } else {
+        error.textContent = "";
+        input.style.border = "2px solid green";
+        return true;
     }
 }
 
-function validateGender(){
-    const gender = document.getElementById('gender').value;
-    if (gender === 'male, female, other') {
+function validateGender() {
+    const input = document.getElementById('gender');
+    const error = document.getElementById('genderError');
+    const valid = ['mand', 'kvinde', 'andet'];
+    const value = input.value.trim().toLowerCase();
+    if (!valid.includes(value)) {
+        error.textContent = "Køn skal være 'mand', 'kvinde' eller 'andet'.";
+        input.style.border = "2px solid red";
         return false;
+    } else {
+        error.textContent = "";
+        input.style.border = "2px solid green";
+        return true;
     }
-    // alert('Vælg venligst en køn');
-    return true;
-
 }
 
 function validateAddress() {
-    const address = document.getElementById('address').value;
-    if (address.length < 5) {
-        // alert('Adresse skal være mindst 5 karakterer');
+    const input = document.getElementById('address');
+    const error = document.getElementById('addressError');
+    if (input.value.trim().length < 5) {
+        error.textContent = "Adresse skal være mindst 5 tegn.";
+        input.style.border = "2px solid red";
+        return false;
+    } else {
+        error.textContent = "";
+        input.style.border = "2px solid green";
+        return true;
     }
 }
 
 function validateZipcode() {
-    const zipcode = document.getElementById('zipcode').value;
-    if (!/^\d+$/.test(zipcode)) {
-        // alert('Postnummer skal kun indeholde tal');
+    const input = document.getElementById('zipcode');
+    const error = document.getElementById('zipcodeError');
+    if (!/^\d{4}$/.test(input.value.trim())) {
+        error.textContent = "Postnummer skal være 4 cifre.";
+        input.style.border = "2px solid red";
+        return false;
+    } else {
+        error.textContent = "";
+        input.style.border = "2px solid green";
+        return true;
     }
 }
 
 function validateEmail() {
-    const email = document.getElementById('email').value;
+    const input = document.getElementById('email');
+    const error = document.getElementById('emailError');
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!pattern.test(email)) {
-        // alert('Indtast en gyldig emailadresse');
-    }
-}
-
-document.getElementById('myForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Stop formularet fra at blive sendt, før validering
-    validateForm();
-});
-
-function validateForm() {
-    const firstName = document.getElementById('firstname').value;
-    const lastName = document.getElementById('lastname').value;
-    const gender = document.getElementById('gender').value;
-    const address = document.getElementById('address').value;
-    const zipcode = document.getElementById('zipcode').value;
-    const email = document.getElementById('email').value;
-
-    if (firstName.length >= 2 && lastName.length >= 2 && gender !== 'male,female' && address.length >= 5 && /^\d+$/.test(zipcode) && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-        alert('Formularen er valideret korrekt');
-        // Eventuelt sende formularen eller noget andet
+    if (!pattern.test(input.value.trim())) {
+        error.textContent = "Indtast en gyldig emailadresse.";
+        input.style.border = "2px solid red";
+        return false;
     } else {
-        alert('Udfyld venligst alle felter korrekt');
+        error.textContent = "";
+        input.style.border = "2px solid green";
+        return true;
     }
 }
+
+document.getElementById('myForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Stop formular fra at sende
+
+    const valid =
+        validateFirstName() &
+        validateLastName() &
+        validateGender() &
+        validateAddress() &
+        validateZipcode() &
+        validateEmail();
+
+    if (valid) {
+        alert("Formularen er korrekt udfyldt!");
+        // Du kan nu indsende formularen eller sende data
+    } else {
+        alert("Udfyld venligst alle felter korrekt.");
+    }
+});
